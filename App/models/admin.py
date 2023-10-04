@@ -13,12 +13,12 @@ class Admin(db.Model):
     def create_competition(self, competition_name, start_date, end_date, division, description):
         # Create a new competition and add it to the database
         competition = Competition(
-            staffID=self.staffID,
+            staffID=self.staffID, #associates staff member with the competition they created
             name=competition_name,
             startDate=start_date,
             endDate=end_date,
-            division=division,
-            description=description  # Add description field
+            division=division, #Add division category the competition allows
+            description=description  # Add description field for competition
         )
         db.session.add(competition)
         db.session.commit()
