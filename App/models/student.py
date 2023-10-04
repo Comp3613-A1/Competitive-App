@@ -20,3 +20,7 @@ class Student(db.Model):
             competition = Competition.query.filter_by(name=competition_identifier, student_id=self.studentID).first()
 
         return competition
+
+    def user_competitions(self):
+        competitions = Competition.query.filter_by(student_id=self.studentID).all()
+        return competitions
