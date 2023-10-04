@@ -20,9 +20,9 @@ class User(db.Model, UserMixin):
 
     def get_json(self):
         return{
-            'id': self.id,
-            'fName': self.fName,
-            'lName': self.lName,
+            'id': self.userID,
+            'firstName': self.fName,
+            'lastName': self.lName,
             'email': self.email,
             'username': self.username
         }
@@ -34,4 +34,3 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         """Check hashed password."""
         return check_password_hash(self.password, password)
-
