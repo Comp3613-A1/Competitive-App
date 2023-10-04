@@ -23,3 +23,15 @@ class Admin(db.Model):
         db.session.add(competition)
         db.session.commit()
         return competition
+
+    def add_result(self, competition_id, student_id, position, score):
+        # Create a new competition result and add it to the database
+            result = Result(
+            competition_id=competition_id,
+            student_id=student_id,
+            position=position,
+            score=score
+        )
+        db.session.add(result)
+        db.session.commit()
+        return result
