@@ -11,9 +11,6 @@ class Student(db.Model):
         self.user_id = user_id
     
     def view_competition_details(self, competition_identifier):
-        # Assuming you have a relationship between Student and Competition models,
-        # you can access the competitions associated with this student.
-
         # Check if the competition_identifier is an integer (ID)
         if isinstance(competition_identifier, int):
             # Query by competition ID
