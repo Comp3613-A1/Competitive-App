@@ -15,17 +15,36 @@ def admin_required(func):
 admin_views = Blueprint('admin_views', __name__, template_folder='../templates')
 
 @admin_views.route('/admin/create_competition', methods=['POST'])
+@admin_required
 def create_competition_view():
+    
+    # Getting form data
     competition_name = request.form.get('competition_name')
     start_date = request.form.get('start_date')
     end_date = request.form.get('end_date')
     division = request.form.get('division')
     description = request.form.get('description')
 
-    # Create a new competition
+    # Creating a new competition
     admin = Admin.query.first() 
     competition = admin.create_competition(competition_name, start_date, end_date, division, description)
 
     # Redirect to another page
     return redirect(url_for('competition_list'))
 
+@admin_views.route('/admin/add_result', methods=['POST'])
+@admin_required  # Decorate with your admin authorization decorator
+def add_result_view():
+
+    # Getting form data
+    competition_id = request.form.get('competition_id')
+    student_id = request.form.get('student_id')
+    position = request.form.get('position')
+    score = request.form.get('score')
+
+    # Creating a result record
+    admin = Admin.query.first()  
+    result = admin.add_result(competition_id, student_id, position, score)
+
+    # Redirect to another page
+    return redirect(url_for('competition_results'))

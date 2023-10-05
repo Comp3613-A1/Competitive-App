@@ -10,7 +10,7 @@ def view_competition_details(self, competition_identifier):
     return competition
 
 #Get a list of competitions that the specific Student participated in
-def user_competitions(self):
+def student_competitions(self):
     # Query competitions where the student's ID matches the 'student_id' in Results
     competitions = Competition.query.join(Results).filter(Results.student_id == self.studentID).all()
     
