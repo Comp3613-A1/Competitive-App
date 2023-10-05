@@ -14,3 +14,5 @@ class Student(User):
         self.score = score
         self.notification = notification
    
+   def add_notification(self, message):
+        self.notification += f"\n{message}"

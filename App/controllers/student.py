@@ -28,5 +28,4 @@ def view_profile(self):
         'Score': self.score,
         'Notifications': self.notification,
     }
-
     return profile_data
