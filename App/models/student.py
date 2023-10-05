@@ -27,3 +27,16 @@ class Student(db.Model):
         competitions = Competition.query.join(Results).filter(Results.student_id == self.studentID).all()
         
         return competitions
+
+    def view_profile(self):
+        # Query the user associated with this student
+        user = User.query.get(self.user_id)
+
+        profile_data = {
+            'First Name': user.fName,
+            'Last Name': user.lName,
+            'Email': user.email,
+            'Username': user.username,
+        }
+
+        return profile_data
