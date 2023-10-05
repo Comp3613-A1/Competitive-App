@@ -5,12 +5,14 @@ class Student(User):
     __tablename__ = 'Student'
     studentID = db.Column(db.Integer,  primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.userID'), nullable = False, unique = False)
-    score= db.column(db.Float, nullable = False, unique = False, default=0)
+    score = db.Column(db.Float, nullable = False, unique = False, default=0)
+    notification = db.Column(db.String(500), nullable = False, unique = False, default = 'No Notifications.')
     
-    def __init__(self, studentID, user_id, score=0):
+    def __init__(self, studentID, user_id, score=0, notification='No Notifications.'):
         self.studentID = studentID
         self.user_id = user_id
         self.score = score
+        self.notification = notification
     
     def view_competition_details(self, competition_identifier):
         #Check if the competition_identifier is an integer (ID)
@@ -40,6 +42,7 @@ class Student(User):
             'Email': user.email,
             'Username': user.username,
             'Score': self.score,
+            'Notifications': self.notification,
         }
 
         return profile_data

@@ -43,5 +43,4 @@ class User(db.Model, UserMixin):
             .order_by(desc(cls.score))
             .all()
         )
-
         return leaderboard
