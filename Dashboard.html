@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+     <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+<body>
+  <div class="navbar-wrapper">
+    <nav class="purple ">
+      <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons white-text">menu</i></a>
+      <div class="nav-wrapper">
+        <ul id="nav-mobile" class="left">
+          <li><a href="/">Home</a></li>
+          <li><a href="/login">login</a></li>
+          <li><a href="/signup">signup</a></li>
+          <li><a href="/users">Users Jinja</a></li>
+          <li><a href="/static/users">Users JS</a></li>
+      </ul>
+        <a href="#!" class="brand-logo left">{% block page %}{% endblock %}</a>
+      </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+      {% if current_user.is_authenticated %}
+        <nav class="blue accent-3 nav-wrapper" style="height: 150px; padding:10px">
+          <span style="font-size:2em; font-weight: bold;">Welcome {{current_user.username}}</span>
+          <div>
+            <a  href="/logout" class="btn waves-effect waves-light white black-text">
+              Logout
+            </a>
+          </div>
+        </nav>
+      {% else %}
+        <nav class="blue accent-3 nav-wrapper" style="height: 150px; padding:10px">
+          <span style="font-size:2em; font-weight: bold;">Not Logged In</span>
+          <div>
+            <a  href="/login" class="btn waves-effect waves-light white black-text">
+              Login
+            </a>
+            <a  href="/signup" class="btn waves-effect waves-light white black-text">
+              Sign Up
+            </a>
+          </div>
+          <!-- <a href="#user"><img class="circle" src="/static/profile.png"></a>
+          <a href="#name"><span class="name">John Doe</span></a> -->
+        </nav>
+    {% endif %}
+    {% block menu %}
+    {% endblock %}
+    
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <nav class="white black-text" style="padding: 10px">
+        <div class="nav-wrapper">
+            <ul class="flashes">
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+      </nav>
+      {% endif %}
+    {% endwith %}
+
+    <div class="container" id="content">{% block content %}{% endblock %}</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
