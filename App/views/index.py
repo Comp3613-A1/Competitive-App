@@ -16,6 +16,10 @@ def admin_login_page():
 def admin_signup_page():
     return render_template('adminsignup.html')
 
+@index_views.route('/admindashboard', methods=['GET'])
+def admin_dashboard():
+    return render_template('admindashboard.html')
+
 @index_views.route('/studentlogin', methods=['GET'])
 def student_login_page():
     return render_template('studentlogin.html')
@@ -23,6 +27,10 @@ def student_login_page():
 @index_views.route('/studentsignup', methods=['GET'])
 def student_signup_page():
     return render_template('studentsignup.html')
+
+@index_views.route('/studentdashboard', methods=['GET'])
+def student_dashboard():
+    return render_template('studentdashboard.html')
 
 @index_views.route('/init', methods=['GET'])
 def init():
