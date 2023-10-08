@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% block title %}Rank My Coding{% endblock %}
+
+{% block page %}Add Competition{% endblock %}
+
+{{ super() }}
+
+{% block link%}
+    <ul id="nav-mobile" class="right">
+        <li><a href="/">Logout</a></li>
+    </ul>
+
+    <ul id = "nav-mobile" class = "left">
+      <li><a href = "/">Back</a></li>
+    </ul>
+
+{% endblock %}
+
+{% block content %}
+
+<body>
+  <header class = "container" style = "text-align:center;margin-top:40px">
+
+    Please enter the following details of the competition to be added.
+  </header>
+</body>
+
+<main class="container" style="margin-top:40px;justify-content: center;align-items: center;display: flex" >
+
+  <form class = "card col 12" id = "competitionForm" method = "POST" style = "padding: 1em">
+
+  <div class = "row">
+    <div class = "input-field col s12">
+      <input placeholder = "Competition Name" name = "competition_name" type = "text" class = "validate">
+      <label for = "comp_name">Competition Name</label>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "input-field col s12">
+      <input placeholder = "Division" name = "division_name" type = "text" class = "validate">
+      <label for = "comp_division">Division</label>
+    </div>
+  </div>
+
+  <div class="form-input" >
+    <label class="font1">
+       Description <br>  
+      <textarea name="decription" id="area-text" class="input-contact" ></textarea>
+
+    </label>
+  </div>
+
+  <br>
+
+  <label for="date">
+    Start Date
+    <input type="date" value="" name="start_date" />
+  </label>
+
+  <label for="date">
+    End Date
+    <input type="date" value="" name="end_date" />
+  </label>
+
+
+  <div class="card-action; right">
+    <br>
+    <input type="submit" class="blue text-white btn">
+  </div>
+  
+  </form>
+
+</main>
+
+  {% endblock %} 
