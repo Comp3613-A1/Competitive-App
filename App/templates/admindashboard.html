@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block page %}Admin Dashboard{% endblock %}
+
+{{ super() }}
+
+{% block link%}
+    <ul id="nav-mobile" class="right">
+        <li><a href="/">Logout</a></li>
+    </ul>
+{% endblock %}
+
+
+
+{% block content %}
+<!--<main class="container" style="margin-top:40px;justify-content: center;align-items: center;display: flex;" ><h1>Welcome Page</h1>An application for students to showcase their participation in coding competitions and establish a campus ranking based on their performance.
+</main>-->
+
+<div style="display: flex; justify-content: center;  height: 12vh; margin-top: 8vh;">
+   <form action="/studentlogin" method="get">  <!--get student login page -->
+        <div class="card-action">
+            <a href="/studentlogin"></a>
+            <button class="blue text-white btn">Create Competition</button> 
+        </form>
+        </div>
+    </div>
+
+   <div style="display: flex; justify-content: center; align-items: center; height: vh;margin-top: vh;">
+   <form action="/adminlogin" method="get">
+     <div >
+        <a href="/adminlogin"></a>
+        <button class="blue text-white btn">Add Competition Results</button>
+      </form>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; align-items: center; height: 80 vh; margin-top: 8vh;">
+        <form action="/adminlogin" method="get">
+          <div >
+             <a href="/adminlogin"></a>
+             <button class="blue text-white btn">View Rankings</button>
+           </form>
+           </div>
+         </div>
+
+    {% endblock %}     
+
+    <!--get & post requests
+    get request= display information
+    post request= check information-->
