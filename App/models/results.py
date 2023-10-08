@@ -4,8 +4,8 @@ from App.database import db
 class Results(db.Model):
     __tablename__ = 'Results'
     resultsID = db.Column(db.Integer, primary_key=True)
-    competitionID = db.Column(db.Integer, db.ForeignKey('competition.competitionID'), nullable=False)
-    studentID = db.Column(db.Integer, db.ForeignKey('student.studentID'), nullable=False)
+    competitionID = db.Column(db.Integer, db.ForeignKey('Competition.competitionID'), nullable=False)
+    studentID = db.Column(db.Integer, db.ForeignKey('Student.studentID'), nullable=False)
     position = db.Column(db.String(100), nullable=False)
     score = db.Column(db.Float, nullable=False)
 
