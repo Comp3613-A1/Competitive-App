@@ -32,6 +32,10 @@ def student_signup_page():
 def student_dashboard():
     return render_template('studentdashboard.html')
 
+@index_views.route('/addcompetition', methods=['GET'])
+def add_competition():
+    return render_template('addcompetition.html')
+
 @index_views.route('/init', methods=['GET'])
 def init():
     db.drop_all()
