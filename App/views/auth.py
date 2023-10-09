@@ -33,8 +33,8 @@ def login_action():
     data = request.form
     user = login(data['username'], data['password'])
     if user:
-        login_user(user)
-        return 'user logged in!'
+        #login_user(user)// this prevents get userid error
+        return redirect('/studentdashboard')
     return 'bad username or password given', 401
 
 @auth_views.route('/logout', methods=['GET'])
@@ -69,4 +69,4 @@ def user_login_api():
 @auth_views.route('/api/identify', methods=['GET'])
 @jwt_required()
 def identify_user_action():
-    return jsonify({'message': f"username: {jwt_current_user.username}, id : {jwt_current_user.id}"})
+    return jsonify({'message': f"username: {jwt_current_user.username}, id :{jwt_current_user.id}"})
