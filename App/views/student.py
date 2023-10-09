@@ -32,7 +32,7 @@ def view_competition_details(competition_identifier):
     if student:
         competition = student.view_competition_details(competition_identifier)
         if competition:
-            return render_template('competition_details.html', competition=competition)
+            return render_template('competitiondetails.html', competition=competition)
         else:
             return "Competition not found", 404
     else:

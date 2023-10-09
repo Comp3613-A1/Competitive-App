@@ -30,7 +30,7 @@ def create_competition_view():
     competition = admin.create_competition(competition_name, start_date, end_date, division, description)
 
     # Redirect to another page
-    return redirect(url_for('competition_list'))
+    return redirect(url_for('addcompetition.html'))
 
 @admin_views.route('/admin/add_result', methods=['POST'])
 @admin_required  # Decorate with your admin authorization decorator
@@ -47,4 +47,4 @@ def add_result_view():
     result = admin.add_result(competition_id, student_id, position, score)
 
     # Redirect to another page
-    return redirect(url_for('competition_results'))
+    return redirect(url_for('addresults.html'))

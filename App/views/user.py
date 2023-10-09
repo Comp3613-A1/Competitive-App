@@ -41,3 +41,9 @@ def create_user_action():
 def static_user_page():
   return send_from_directory('static', 'static-user.html')
 
+@user_views.route('/leaderboard', methods=['GET'])
+def view_leaderboard():
+    student = Student.query.filter_by(user_id=current_user.userID).first()
+    if student:
+        leaderboard=view_ranking()
+        return render_template('leaderboard.html', leaderboard=leaderboard)
