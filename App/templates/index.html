@@ -6,7 +6,11 @@
 
 {{ super() }}
 
-
+{% block link%}
+    <ul id="nav-mobile" class="right" style = "display: flex">
+        <li><a href="/signup">Signup</a></li>
+    </ul>
+{% endblock %}
 
 {% block content %}
 <main class="container" style="margin-top:40px;justify-content: center;align-items: center;display: flex;" ><h1>Welcome Page</h1>An application for students to showcase their participation in coding competitions and establish a campus ranking based on their performance.
