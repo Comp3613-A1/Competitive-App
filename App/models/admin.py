@@ -6,6 +6,6 @@ class Admin(User):
     staffID = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.userID'), nullable=False, unique=False)
    
-    def __init__(self, staffID, user_id):
-        self.staffID = staffID
-        self.user_id = user_id
+    def __init__(self, fName, lName, email, username, password):
+        super().__init__(fName, lName, email, username, password)
+        
