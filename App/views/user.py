@@ -43,7 +43,7 @@ def static_user_page():
 
 @user_views.route('/leaderboard.html', methods=['GET'])
 def view_leaderboard():
-    student = Student.query.filter_by(user_id=current_user.userID).first()
+    student = Student.query.filter_by(username=current_user.username).first()
     if student:
         leaderboard=view_ranking()
         return render_template('ranking.html', leaderboard=leaderboard)
