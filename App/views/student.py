@@ -17,7 +17,7 @@ def view_student_profile():
     else:
         return "Student not found", 404
 
-@student_views.route('/student/competitions', methods=['GET'])
+@student_views.route('/studentdashboard', methods=['GET'])
 def view_student_competitions(competition_identifier):
     student = Student.query.filter_by(user_id=current_user.userID).first()
     if student:
@@ -26,7 +26,7 @@ def view_student_competitions(competition_identifier):
     else:
         return "Student not found", 404
 
-@student_views.route('/student/competition/details', methods=['GET'])
+@student_views.route('/competitiondetails', methods=['GET'])
 def view_competition_details(competition_identifier):
     student = Student.query.filter_by(user_id=current_user.userID).first()
     if student:
