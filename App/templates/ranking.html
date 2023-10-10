@@ -23,7 +23,7 @@
                 {% for student in students %}
                     <tr>
                         <td>{{ rank }}</td>
-                        <td>{{ student.user.fName }} {{ student.user.lName }}</td>
+                        <td>{{ student.fName }} {{ student.lName }}</td>
                         <td>{{ student.score }}</td>
                     </tr>
                     {% set rank = rank + 1 %}
