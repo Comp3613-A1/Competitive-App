@@ -9,7 +9,8 @@ from App.controllers import (
     jwt_authenticate, 
     get_all_users,
     get_all_users_json,
-    jwt_required
+    jwt_required,
+    view_ranking
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -19,7 +20,7 @@ def get_user_page():
     users = get_all_users()
     return render_template('users.html', users=users)
 
-@user_views.route('/api/users', methods=['GET'])
+@user_views.route('/student/leaderboard', methods=['GET'])
 def get_users_action():
     users = get_all_users_json()
     return jsonify(users)
@@ -27,7 +28,7 @@ def get_users_action():
 @user_views.route('/api/users', methods=['POST'])
 def create_user_endpoint():
     data = request.json
-    create_user(data['username'], data['password'])
+    create_user(data['fName'],data['lName'], data['email'],data['username'], data['password'])
     return jsonify({'message': f"user {data['username']} created"})
 
 @user_views.route('/users', methods=['POST'])
@@ -41,9 +42,9 @@ def create_user_action():
 def static_user_page():
   return send_from_directory('static', 'static-user.html')
 
-@user_views.route('/leaderboard.html', methods=['GET'])
+@user_views.route('/leaderboard', methods=['GET'])
 def view_leaderboard():
-    student = Student.query.filter_by(username=current_user.username).first()
+    student = Student.query.filter_by(user_id=current_user.userID).first()
     if student:
         leaderboard=view_ranking()
-        return render_template('ranking.html', leaderboard=leaderboard)
+        return render_template('leaderboard.html', leaderboard=leaderboard)
