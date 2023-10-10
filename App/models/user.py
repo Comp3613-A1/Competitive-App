@@ -24,7 +24,8 @@ class User(db.Model, UserMixin):
             'firstName': self.fName,
             'lastName': self.lName,
             'email': self.email,
-            'username': self.username
+            'username': self.username,
+            'password': self.password
         }
 
     #def set_password(self, password):
@@ -34,3 +35,4 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         """Check hashed password."""
         return check_password_hash(self.password, password)
+
