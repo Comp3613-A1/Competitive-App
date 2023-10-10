@@ -46,4 +46,4 @@ def view_leaderboard():
     student = Student.query.filter_by(user_id=current_user.userID).first()
     if student:
         leaderboard=view_ranking()
-        return render_template('leaderboard.html', leaderboard=leaderboard)
+        return render_template('ranking.html', leaderboard=leaderboard)
