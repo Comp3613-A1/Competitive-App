@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import current_user, login_required
 
 from.index import index_views
+from App.models import *
 
 from App.controllers import (
     create_user,
