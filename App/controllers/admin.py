@@ -1,5 +1,13 @@
-from App.database import db
 from App.models import Competition
+from sqlalchemy import func, desc
+from App.models import User
+from App.database import db
+
+def create_admin(fName, lName, email, username, password):
+    new_admin = User(fName=fName, lName=lName, email=email,username=username, password=password)
+    db.session.add(new_admin)
+    db.session.commit()
+    return new_admin
 
 def create_competition(self, competition_name, start_date, end_date, division, description):
     # Create a new competition and add it to the database
