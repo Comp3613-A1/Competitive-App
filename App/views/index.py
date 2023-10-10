@@ -48,6 +48,9 @@ def competitiondetails():
 def ranking_page():
     return render_template('ranking.html')
 
+@index_views.route('/addresults', methods=['GET'])
+def add_results():
+    return render_template('addresults.html')
 
 @index_views.route('/init', methods=['GET'])
 def init():
