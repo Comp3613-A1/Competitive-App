@@ -17,6 +17,8 @@ def initialize():
     db.drop_all()
     db.create_all()
     create_user('bob', 'lastbob', 'bob123@bob.com','bobuser', 'bobpass')
+    create_result(1, 1, '1', 99)
+    create_competition(1,, 'test', '1st', '2nd', 'begin', 'desctexst')
     print('database intialized')
 
 '''
