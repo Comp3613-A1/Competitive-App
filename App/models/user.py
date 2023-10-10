@@ -16,7 +16,7 @@ class User(db.Model, UserMixin):
         self.lName = lName
         self.email = email
         self.username = username
-        self.set_password(password)
+        self.password=password
 
     def get_json(self):
         return{
@@ -27,9 +27,9 @@ class User(db.Model, UserMixin):
             'username': self.username
         }
 
-    def set_password(self, password):
+    #def set_password(self, password):
         """Create hashed password."""
-        self.password = generate_password_hash(password, method='sha256')
+        #self.password = generate_password_hash(password, method='sha256')
     
     def check_password(self, password):
         """Check hashed password."""
