@@ -40,6 +40,10 @@ def student_dashboard():
 def competitiondetails():
     return render_template('competitiondetails.html')
 
+@index_views.route('/ranking', methods=['GET'])
+def ranking_page():
+    return render_template('ranking.html')
+
 
 @index_views.route('/init', methods=['GET'])
 def init():
