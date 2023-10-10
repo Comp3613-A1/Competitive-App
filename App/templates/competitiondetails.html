@@ -33,10 +33,14 @@
       <th>Competition ID</th><th>Competition Name</th><th>Start Time</th><th>End Time</th><th>Details</th>
     </thead>
     <tbody>
+      {% for competition in competitions %}
       <tr>
-        <td>COMPETITIONID01</td><td>Competition Name</td><td>Start</td><td>End</td><td>Details about competition.</td>
-      <tr>
-        <td>COMPETITIONID02</td><td>Competition Name</td><td>Start</td><td>End</td><td>Details about competition.</td>
+        <td>{{competition.competitionID}}</td>
+        <td>{{competition.competition_name}}</td>
+        <td>{{competition.startDate}}</td>
+        <td>{{competition.endDate}}</td>
+        <td>{{competition.description}}</td>
+      {% endfor %}
       </tr>
     </tbody>
   </table>
