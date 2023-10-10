@@ -8,8 +8,8 @@ class Student(User):
     score = db.Column(db.Float, nullable = False, unique = False, default=0)
     notification = db.Column(db.String(500), nullable = False, unique = False, default = 'No Notifications.')
     
-    def __init__(self, studentID, userID, score=0, notification='No Notifications.'):
-        self.studentID = studentID
+    def __init__(self, userID, score=0, notification='No Notifications.', fName, lName, email, username, password):
+        super().__init__(fName, lName, email, username, password)
         self.userID = userID
         self.score = score
         self.notification = notification
