@@ -33,9 +33,13 @@ def identify_page():
 def login_action():
     data = request.form
     user = login(data['username'], data['password'])
-    if user:
-        #login_user(user)// this prevents get userid error
+    existing_user = User.query.filter((User.username == data['username']) & (User.password == data['password'] )).first()
+
+    if existing_user:
         return redirect('/studentdashboard')
+    #if user:
+        #login_user(user)// this prevents get userid error
+        #return redirect('/studentdashboard')
     return 'bad username or password given', 401
 
 @auth_views.route('/logout', methods=['GET'])
@@ -63,8 +67,8 @@ def signup_action():
     new_user = create_user(fName=fName, lName=lName, email=email,username=username, password=password)
 
     # Add the user to the database
-    #db.session.add(new_user)
-    #db.session.commit()
+    db.session.add(new_user)
+    db.session.commit()
 
     # Redirect to a success page or return a JSON response
     return redirect('/studentdashboard')
