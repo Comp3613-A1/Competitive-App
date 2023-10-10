@@ -23,8 +23,8 @@
                 {% for student in students %}
                     <tr>
                         <td>{{ rank }}</td>
-                        <td>{{ student.fName }} {{ student.lName }}</td>
-                        <td>{{ student.score }}</td>
+                        <td>{{ Student.fName }} {{ Student.lName }}</td>
+                        <td>{{ Student.score }}</td>
                     </tr>
                     {% set rank = rank + 1 %}
                 {% endfor %}
