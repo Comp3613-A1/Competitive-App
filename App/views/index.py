@@ -49,7 +49,7 @@ def ranking_page():
 def init():
     db.drop_all()
     db.create_all()
-    create_user('bob', 'bobpass')
+    create_user('bob', 'lastbob', 'bob123@bob.com','bobuser', 'bobpass')
     return jsonify(message='db initialized!')
 
 @index_views.route('/health', methods=['GET'])
