@@ -48,7 +48,7 @@ def logout_action():
     user = login(data['username'], data['password'])
     return 'logged out!'
 
-@auth_views.route('/signup', methods=['POST'])
+"""@auth_views.route('/signup', methods=['POST'])
 def signup_action():
     data = request.form  # Assuming you are sending form data
     fName = data['fName']
@@ -73,7 +73,58 @@ def signup_action():
     # Redirect to a success page or return a JSON response
     return redirect('/studentdashboard')
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
+"""
+@auth_views.route('/studentsignup', methods=['POST'])
+def student_signup_action():
+    data = request.form  # Assuming you are sending form data
+    fName = data['fName']
+    lName = data['lName']
+    username = data['username']
+    email = data['email']
+    password = data['password']
 
+    # Check if the username or email is already taken
+    existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
+
+    if existing_user:
+        return 'Username or email already taken', 409
+
+    # Create a new user
+    new_student = create_student(fName=fName, lName=lName, email=email,username=username, password=password)
+
+    # Add the user to the database
+    db.session.add(new_student)
+    db.session.commit()
+
+    # Redirect to a success page or return a JSON response
+    return redirect('/studentdashboard')
+    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
+
+@auth_views.route('/adminsignup', methods=['POST'])
+def admin_signup_action():
+    data = request.form  # Assuming you are sending form data
+    fName = data['fName']
+    lName = data['lName']
+    username = data['username']
+    email = data['email']
+    password = data['password']
+
+    # Check if the username or email is already taken
+    existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
+
+    if existing_user:
+        return 'Username or email already taken', 409
+
+    # Create a new user
+    new_admin = create_admin(fName=fName, lName=lName, email=email,username=username, password=password)
+
+    # Add the user to the database
+    db.session.add(new_admin)
+    db.session.commit()
+
+    # Redirect to a success page or return a JSON response
+    return redirect('/admindashboard')
+    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
 '''
 API Routes
 '''
