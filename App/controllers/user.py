@@ -1,5 +1,6 @@
 from sqlalchemy import func, desc
 from App.models import User
+from App.models import Student
 from App.database import db
 
 def create_user(fName, lName, email, username, password):
