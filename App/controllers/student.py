@@ -1,3 +1,13 @@
+from sqlalchemy import func, desc
+from App.models import User
+from App.database import db
+
+def create_student(fName, lName, email, username, password):
+    new_student = User(fName=fName, lName=lName, email=email,username=username, password=password)
+    db.session.add(new_student)
+    db.session.commit()
+    return new_student
+    
 def view_competition_details(self, competition_identifier):
     #Check if the competition_identifier is an integer (ID)
     if isinstance(competition_identifier, int):
