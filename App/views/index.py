@@ -36,6 +36,10 @@ def student_signup_page():
 def student_dashboard():
     return render_template('studentdashboard.html')
 
+@index_views.route('/viewprofile', methods=['GET'])
+def view_profile():
+    return render_template('viewprofile.html')
+
 @index_views.route('/competitiondetails', methods=['GET'])
 def competitiondetails():
     return render_template('competitiondetails.html')
