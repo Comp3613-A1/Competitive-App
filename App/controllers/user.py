@@ -1,3 +1,4 @@
+from sqlalchemy import func, desc
 from App.models import User
 from App.database import db
 
