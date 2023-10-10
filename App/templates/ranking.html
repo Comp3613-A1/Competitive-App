@@ -15,16 +15,14 @@
                 <tr>
                     <th>Rank</th>
                     <th>Name</th>
-                    <th>Score</th>
                 </tr>
             </thead>
             <tbody>
                 {% set rank = 1 %}
-                {% for student in students %}
+                {% for student in leaderboard %}
                     <tr>
                         <td>{{ rank }}</td>
                         <td>{{ student.user.fName }} {{ student.user.lName }}</td>
-                        <td>{{ student.score }}</td>
                     </tr>
                     {% set rank = rank + 1 %}
                 {% endfor %}
