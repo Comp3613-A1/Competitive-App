@@ -52,6 +52,10 @@ def ranking_page():
 def add_results():
     return render_template('addresults.html')
 
+@index_views.route('/signup', methods=['GET'])
+def signup_page():
+    return render_template('signup.html')
+
 @index_views.route('/init', methods=['GET'])
 def init():
     db.drop_all()
