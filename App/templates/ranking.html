@@ -3,17 +3,17 @@
 {% block page %}Leaderboard{% endblock %}
 
 {% block content %}
-   <div class="row" style="margin-left: 20px;">
+   <div class="row">
         <p>
             This leaderboard is rendered on the server. Flask retrieves student data from the database and dynamically renders this page when a request is sent to <a href="/student/leaderboard">/student/leaderboard</a>.
         </p>
     </div>
 <form class="col s12" method="POST" action="/student/leaderboard">
     <div class="row">
-        <table>
+        <table style="margin-left: 20px;">
             <thead>
                 <tr>
-                    <th>Rank</th>
+                    <th>     Rank</th>
                     <th>Name</th>
                     <th>Score</th>
                 </tr>
@@ -29,7 +29,7 @@
                     {% set rank = rank + 1 %}
                 {% endfor %}
                  <tr>
-                        <td>1</td>
+                        <td>     1</td>
                         <td>Bob BobLast</td>
                         <td>0</td>
                     </tr>
