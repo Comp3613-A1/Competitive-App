@@ -48,7 +48,7 @@ def logout_action():
     user = login(data['username'], data['password'])
     return 'logged out!'
 
-"""@auth_views.route('/signup', methods=['POST'])
+@auth_views.route('/studentsignup', methods=['POST'])
 def signup_action():
     data = request.form  # Assuming you are sending form data
     fName = data['fName']
@@ -73,7 +73,7 @@ def signup_action():
     # Redirect to a success page or return a JSON response
     return redirect('/studentdashboard')
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
-"""
+
 @auth_views.route('/signup', methods=['POST'])
 def student_signup_action():
     data = request.form  # Assuming you are sending form data
