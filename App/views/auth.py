@@ -74,7 +74,7 @@ def signup_action():
     return redirect('/studentdashboard')
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
 """
-@auth_views.route('/studentsignup', methods=['POST'])
+@auth_views.route('/signup', methods=['POST'])
 def student_signup_action():
     data = request.form  # Assuming you are sending form data
     fName = data['fName']
