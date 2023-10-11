@@ -35,7 +35,7 @@ def create_competition_view():
     return redirect ('/admindashboard')
 
 @admin_views.route('/admin/add_result', methods=['POST'])
-#@admin_required  # Decorate with your admin authorization decorator
+#@admin_required  
 def add_result_view():
 
     # Getting form data
