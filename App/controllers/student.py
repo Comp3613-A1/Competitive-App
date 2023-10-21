@@ -1,13 +1,28 @@
-from sqlalchemy import func, desc
-from App.models import User
+
+"""
+This module contains functions related to student operations.
+"""
+from sqlalchemy import desc
+#from sqlalchemy import func
+from App.models.user import User
+from App.models.student import Student
+from App.models.competition import Competition
+from App.models.results import Results
 from App.database import db
 
+stmt = db.session.query(Student).order_by(desc(Student.score))
+
+
 def create_student(fName, lName, email, username, password):
+    """
+    Create a new student with the provided details.
+    Returns the newly created student object.
+    """
     new_student = User(fName=fName, lName=lName, email=email,username=username, password=password)
     db.session.add(new_student)
     db.session.commit()
     return new_student
-    
+
 def view_competition_details(self, competition_identifier):
     #Check if the competition_identifier is an integer (ID)
     if isinstance(competition_identifier, int):
