@@ -1,6 +1,7 @@
 from flask import Blueprint, redirect, render_template, request, send_from_directory, jsonify
 from App.models import db
 from App.controllers import create_user
+from App.controllers import create_competition
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
 
@@ -32,6 +33,10 @@ def student_login_page():
 def student_signup_page():
     return render_template('studentsignup.html')
 
+@index_views.route('/addresults', methods=['GET'])
+def add_results_page():
+    return render_template('addresults.html')
+
 @index_views.route('/studentdashboard', methods=['GET'])
 def student_dashboard():
     return render_template('studentdashboard.html')
@@ -48,10 +53,6 @@ def competitiondetails():
 def ranking_page():
     return render_template('ranking.html')
 
-@index_views.route('/addresults', methods=['GET'])
-def add_results():
-    return render_template('addresults.html')
-
 @index_views.route('/signup', methods=['GET'])
 def signup_page():
     return render_template('signup.html')
@@ -62,6 +63,17 @@ def init():
     db.create_all()
     create_user('bob', 'lastbob', 'bob123@bob.com','bobuser', 'bobpass')
     return jsonify(message='db initialized!')
+
+@index_views.route('/competition_init', methods=['GET'])
+def competition_init():
+    db.drop_all()
+    db.create_all()
+    create_competition('Competition Name', 'start', 'end','beginner', '	Details about competition.')
+    return jsonify(message='comp initialized!')
+
+@index_views.route('/health', methods=['GET'])
+def health_check():
+    return jsonify({'status':'healthy'})
 
 @index_views.route('/health', methods=['GET'])
 def health_check():
