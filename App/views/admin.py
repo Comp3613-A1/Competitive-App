@@ -2,7 +2,21 @@ from flask import Flask, Blueprint, render_template,url_for, redirect, request, 
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import login_required, login_user, current_user, logout_user
 from functools import wraps
-from App.controllers import *
+from App.models import Results
+from.index import index_views
+from App.database import db
+#from App.controllers import *
+from App.controllers import (
+    create_user,
+    create_competition,
+    add_result,
+    jwt_authenticate, 
+    get_all_results_json,
+    get_all_users,
+    get_all_users_json,
+    jwt_required,
+    view_ranking
+)
 
 def admin_required(func):
     @wraps(func)
@@ -14,7 +28,13 @@ def admin_required(func):
 
 admin_views = Blueprint('admin_views', __name__, template_folder='../templates')
 
-@admin_views.route('/admin/create_competition', methods=['POST'])
+@admin_views.route('/competitiondetails', methods=['GET'])
+def get_comp_action():
+    comp = get_all_comp()
+    return render_template('users.html', users=comp)
+
+
+""" @admin_views.route('/admin/create_competition', methods=['POST'])
 #@admin_required
 def create_competition_view():
     
@@ -33,7 +53,7 @@ def create_competition_view():
     db.session.commit()
     # Redirect to another page
     return redirect ('/admindashboard')
-
+    
 @admin_views.route('/admin/add_result', methods=['POST'])
 #@admin_required  
 def add_result_view():
@@ -49,4 +69,25 @@ def add_result_view():
     result = admin.add_result(competition_id, student_id, position, score)
 
     # Redirect to another page
-    return redirect(url_for('addresults.html'))
+    return redirect(url_for('addresults.html'))"""
+
+@admin_views.route('/addresults', methods=['POST'])
+def get_results_action():
+    data = request.form  # Assuming you are sending form data
+    competitionID = data['competitionID']
+    studentID = data['studentID']
+    position = data['position']
+    score = data['score']
+
+    # Add result details
+    new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
+
+    # Add the results to the database
+    db.session.add(new_results)
+    db.session.commit()
+    
+    return get_all_results_json()
+    #return jsonify(message=f'{new_results.competitionID}')
+    # Redirect to a success page or return a JSON response
+   # return redirect('/studentdashboard') get_result_json
+    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
