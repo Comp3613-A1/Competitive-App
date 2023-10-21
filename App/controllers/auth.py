@@ -1,6 +1,6 @@
 from flask_login import login_user, login_manager, logout_user, LoginManager
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager
-
+from App.models import Results
 from App.models import User
 
 def jwt_authenticate(username, password):
@@ -14,6 +14,13 @@ def login(username, password):
     if user and user.check_password(password):
         return user
     return None
+
+def get_all_results_json():
+    results = Results.query.all()
+    if not results:
+        return []
+    results= [result.get_json() for result in results]
+    return results
 
 def setup_flask_login(app):
     login_manager = LoginManager()
