@@ -1,4 +1,4 @@
-from App.models import *
+#from App.models import *
 from App.database import db
 
 class Results(db.Model):
@@ -14,3 +14,12 @@ class Results(db.Model):
         self.studentID = studentID
         self.position = position
         self.score = score
+
+    def get_json(self):
+        return{
+            'id': self.resultsID,
+            'Competition ID ': self.competitionID,
+            'Student ID': self.studentID,
+            'Position': self.position,
+            'score': self.score
+        }
