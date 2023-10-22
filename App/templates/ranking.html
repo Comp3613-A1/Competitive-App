@@ -5,34 +5,29 @@
 {% block content %}
    <div class="row">
         <p>
-            This leaderboard is rendered on the server. Flask retrieves student data from the database and dynamically renders this page when a request is sent to <a href="/student/leaderboard">/student/leaderboard</a>.
+            This leaderboard is rendered on the server. Flask retrieves student data from the database and dynamically renders this page when a request is sent to <a href="/ranking">/ranking</a>.
         </p>
     </div>
-<form class="col s12" method="POST" action="/student/leaderboard">
+<form class="col s12" method="POST" action="/ranking">
     <div class="row">
         <table style="margin-left: 20px;">
             <thead>
                 <tr>
                     <th>     Rank</th>
-                    <th>Name</th>
+                    <th>Student ID</th>
                     <th>Score</th>
                 </tr>
             </thead>
             <tbody>
                 {% set rank = 1 %}
-                {% for student in students %}
+                {% for result in leaderboard %}
                     <tr>
                         <td>{{ rank }}</td>
-                        <td>{{ student.user.fName }} {{ student.user.lName }}</td>
-                        <td>{{ student.score }}</td>
+                        <td>{{ result.studentID}}</td>
+                        <td>{{ result.score }}</td>
                     </tr>
                     {% set rank = rank + 1 %}
                 {% endfor %}
-                 <tr>
-                        <td>     1</td>
-                        <td>Bob BobLast</td>
-                        <td>0</td>
-                    </tr>
             </tbody>
         </table>
     </div>

@@ -2,13 +2,14 @@ from flask import Blueprint, render_template, jsonify, request, send_from_direct
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import login_required, login_user, current_user, logout_user
 from App.database import db, get_migrate
-from App.models import User
+from App.models import User, Student
 from.index import index_views
 
 from App.controllers import (
     create_user,
     jwt_authenticate,
-    login 
+    login,
+    create_student 
 )
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
@@ -64,7 +65,7 @@ def signup_action():
         return 'Username or email already taken', 409
 
     # Create a new user
-    new_user = create_user(fName=fName, lName=lName, email=email,username=username, password=password)
+    new_user = create_student(fName=fName, lName=lName, email=email,username=username, password=password)
 
     # Add the user to the database
     db.session.add(new_user)

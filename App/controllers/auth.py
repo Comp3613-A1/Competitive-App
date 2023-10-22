@@ -15,6 +15,9 @@ def login(username, password):
         return user
     return None
 
+def get_all_results():
+    return Results.query.all()
+
 def get_all_results_json():
     results = Results.query.all()
     if not results:
