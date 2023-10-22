@@ -3,6 +3,7 @@ from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import login_required, login_user, current_user, logout_user
 from functools import wraps
 from App.models import Results
+from App.models import Competition
 from.index import index_views
 from App.database import db
 #from App.controllers import *
@@ -12,6 +13,7 @@ from App.controllers import (
     add_result,
     jwt_authenticate, 
     get_all_results_json,
+    get_all_comp_json,
     get_all_users,
     get_all_users_json,
     jwt_required,
@@ -28,13 +30,13 @@ def admin_required(func):
 
 admin_views = Blueprint('admin_views', __name__, template_folder='../templates')
 
-@admin_views.route('/competitiondetails', methods=['GET'])
+'''@admin_views.route('/competitiondetails', methods=['GET'])
 def get_comp_action():
     comp = get_all_comp()
-    return render_template('users.html', users=comp)
+    return render_template('users.html', users=comp)'''
 
 
-""" @admin_views.route('/admin/create_competition', methods=['POST'])
+''' @admin_views.route('/admin/create_competition', methods=['POST'])
 #@admin_required
 def create_competition_view():
     
@@ -90,4 +92,22 @@ def get_results_action():
     #return jsonify(message=f'{new_results.competitionID}')
     # Redirect to a success page or return a JSON response
    # return redirect('/studentdashboard') get_result_json
-    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
+    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201'''
+
+@admin_views.route('/addcompetition', methods=['POST'])
+def get_competition_action():
+    data = request.form  # Assuming you are sending form data
+    name = data['name']
+    startDate= data['startDate']
+    endDate= data['endDate']
+    division = data['division']
+    description = data['description']
+
+    # Add result details
+    new_competition = create_competition(name=name, startDate=startDate,endDate=endDate, division=division, description=description)
+
+    # Add the results to the database
+    db.session.add(new_competition)
+    db.session.commit()
+    
+    return get_all_comp_json()
