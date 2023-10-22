@@ -13,13 +13,13 @@ def create_admin(fName, lName, email, username, password):
 def get_all_comp():
     return Competition.query.all()
 
-def create_competition( competition_name, start_date, end_date, division, description):
+def create_competition( name, startDate, endDate, division, description):
     # Create a new competition and add it to the database
     competition = Competition(
         #staffID=self.staffID,self, #associates staff member with the competition they created
-        name=competition_name,
-        startDate=start_date,
-        endDate=end_date,
+        name=name,
+        startDate=startDate,
+        endDate=endDate,
         division=division, #Add division category the competition allows
         description=description,  # Add description field for competition
     )
