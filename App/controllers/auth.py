@@ -2,6 +2,7 @@ from flask_login import login_user, login_manager, logout_user, LoginManager
 from flask_jwt_extended import create_access_token, jwt_required, JWTManager
 from App.models import Results
 from App.models import User
+from App.models import Competition
 
 def jwt_authenticate(username, password):
   user = User.query.filter_by(username=username).first()
@@ -15,15 +16,19 @@ def login(username, password):
         return user
     return None
 
-def get_all_results():
-    return Results.query.all()
-
 def get_all_results_json():
     results = Results.query.all()
     if not results:
         return []
     results= [result.get_json() for result in results]
     return results
+
+def get_all_comp_json():
+    competitions = Competition.query.all()
+    if not competitions:
+        return []
+    competitions= [competition.get_json() for competition in competitions]
+    return competitions
 
 def setup_flask_login(app):
     login_manager = LoginManager()
