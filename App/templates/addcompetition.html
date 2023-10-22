@@ -28,18 +28,18 @@
 
 <main class="container" style="margin-top:40px;justify-content: center;align-items: center;display: flex" >
 
-  <form class = "card col 12" id = "competitionForm" method = "POST" style = "padding: 1em" action="/admin/create_competition" >
+  <form class = "card col 12" id = "competitionForm" method = "POST" style = "padding: 1em" action="/addcompetition" >
 
   <div class = "row">
     <div class = "input-field col s12">
-      <input placeholder = "Competition Name" name = "competition_name" type = "text" class = "validate">
+      <input placeholder = "Competition Name" name = "name" type = "text" class = "validate">
       <label for = "comp_name">Competition Name</label>
     </div>
   </div>
 
   <div class = "row">
     <div class = "input-field col s12">
-      <input placeholder = "Division" name = "division_name" type = "text" class = "validate">
+      <input placeholder = "Division" name = "division" type = "text" class = "validate">
       <label for = "comp_division">Division</label>
     </div>
   </div>
@@ -47,7 +47,7 @@
   <div class="form-input" >
     <label class="font1">
        Description <br>  
-      <textarea name="decription" id="area-text" class="input-contact" ></textarea>
+      <textarea name="description" id="text" class="input-contact" ></textarea>
 
     </label>
   </div>
@@ -56,12 +56,12 @@
 
   <label for="date">
     Start Date
-    <input type="date" value="" name="start_date" />
+    <input type="date" value="" name="startDate" />
   </label>
 
   <label for="date">
     End Date
-    <input type="date" value="" name="end_date" />
+    <input type="date" value="" name="endDate" />
   </label>
 
 
