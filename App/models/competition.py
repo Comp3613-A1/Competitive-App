@@ -1,7 +1,7 @@
 from App.database import db
-
+from App.models import *
 class Competition(db.Model):
-    #__tablename__ = 'Competition'
+    __tablename__ = 'Competition'
     competitionID = db.Column(db.Integer, primary_key=True)
     #staffID = db.Column(db.Integer, db.ForeignKey('Admin.staffID'), nullable=False, unique=False)
     name = db.Column(db.String(120), nullable=False)
