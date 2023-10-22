@@ -94,6 +94,62 @@ def get_results_action():
    # return redirect('/studentdashboard') get_result_json
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201'''
 
+def add_result(competitionID, studentID, position, score):
+        
+        # Store rankings before new results are added
+        #prev_ranks = view_rankings()
+  
+        # Create a new competition result and add it to the database
+        result = Results(
+            competitionID=competitionID,
+            studentID=studentID,
+            position=position,
+            score=score
+        )
+        db.session.add(result)
+        db.session.commit()
+
+        return result
+      
+        # Get the rankings after results were added
+        #current_ranks = view_rankings()
+
+        # Find users who were in the top 20 in the previous rankings
+        """top_20_previous = [user for user, position in prev_ranks[:20]]
+
+        # Find users who are in the top 20 in the current leaderboard
+        top_20_current = [user for user, position in current_ranks[:20]]
+
+        # Compare the top 20 users in the current leaderboard with the previous rankings
+        for user in top_20_previous:
+            if user not in top_20_current:
+                # User was in the top 20 previously but not anymore, send a notification
+                send_notification(user, "Your ranking has dropped out of the top 20.")
+"""
+        #return result
+
+@admin_views.route('/addresults', methods=['POST'])
+def get_results_action():
+    data = request.form  # Assuming you are sending form data
+    competitionID = data['competitionID']
+    studentID = data['studentID']
+    position = data['position']
+    score = data['score']
+
+    # Add result details
+    new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
+
+    # Add the results to the database
+    db.session.add(new_results)
+    db.session.commit()
+
+    return redirect('/ranking')
+    #return get_all_results_json()
+    #return jsonify(message=f'{new_results.competitionID}')
+    # Redirect to a success page or return a JSON response
+   # return redirect('/studentdashboard') get_result_json
+    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
+
 @admin_views.route('/addcompetition', methods=['POST'])
 def get_competition_action():
     data = request.form  # Assuming you are sending form data
