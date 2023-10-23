@@ -1,11 +1,11 @@
 from App.models import Competition
 from App.models import Results
 from sqlalchemy import func, desc
-from App.models import User
+from App.models import User, Admin
 from App.database import db
 
 def create_admin(fName, lName, email, username, password):
-    new_admin = User(fName=fName, lName=lName, email=email,username=username, password=password)
+    new_admin = Admin(fName=fName, lName=lName, email=email,username=username, password=password)
     db.session.add(new_admin)
     db.session.commit()
     return new_admin

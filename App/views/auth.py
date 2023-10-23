@@ -2,14 +2,15 @@ from flask import Blueprint, render_template, jsonify, request, send_from_direct
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import login_required, login_user, current_user, logout_user
 from App.database import db, get_migrate
-from App.models import User, Student
+from App.models import User, Student, Admin
 from.index import index_views
 
 from App.controllers import (
     create_user,
     jwt_authenticate,
     login,
-    create_student 
+    create_student,
+    create_admin
 )
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
