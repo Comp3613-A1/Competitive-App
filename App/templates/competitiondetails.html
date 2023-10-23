@@ -30,7 +30,7 @@
 
   <table>
     <thead>
-      <th>Competition ID</th><th>Competition Name</th><th>Start Time</th><th>End Time</th><th>Details</th>
+      <th>Competition ID</th><th>Competition Name</th><th>Start Time</th><th>End Time</th><th>Division</th><th>Details</th>
     </thead>
     <tbody>
       {% for competition in competitions %}
@@ -39,6 +39,7 @@
         <td>{{competition.competition_name}}</td>
         <td>{{competition.startDate}}</td>
         <td>{{competition.endDate}}</td>
+        <td>{{competition.division}}</td>
         <td>{{competition.description}}</td>
       {% endfor %}
       </tr>
