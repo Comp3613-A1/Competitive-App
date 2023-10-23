@@ -19,6 +19,9 @@ def login(username, password):
 def get_all_results():
     return Results.query.all()
 
+def get_all_competitions():
+    return Competition.query.all()
+
 def get_all_results_json():
     results = Results.query.all()
     if not results:
