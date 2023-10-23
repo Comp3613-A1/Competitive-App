@@ -13,7 +13,8 @@ from App.controllers import (
     get_all_users_json,
     jwt_required,
     view_ranking,
-    get_all_results
+    get_all_results,
+    get_all_competitions
 )
 
 user_views = Blueprint('user_views', __name__, template_folder='../templates')
@@ -49,6 +50,11 @@ def static_user_page():
 def view_leaderboard():
     leaderboard=get_all_results()
     return render_template('ranking.html', leaderboard=leaderboard)
+
+@user_views.route('/competitiondetails', methods=['GET'])
+def view_competitions():
+    competitions=get_all_competitions()
+    return render_template('competitiondetails.html', competitions = competitions)
 
 '''
 @user_views.route('/leaderboard', methods=['GET'])
