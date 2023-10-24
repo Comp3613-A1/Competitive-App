@@ -11,7 +11,8 @@ from App.controllers import (
     get_user,
     get_user_by_username,
     update_user,
-    create_student
+    create_student,
+    get_students
 )
 
 
@@ -83,3 +84,7 @@ class StudentIntegrationsTests(unittest.TestCase):
         self.assertIsNotNone(created_student)
         self.assertEqual(created_student.fName, "John")
         self.assertEqual(created_student.lName, "Doe")
+
+    def test_get_students(self):        #retrieves a list of all students
+        students_list = get_students()
+        self.assertIsNotNone(students_list)
