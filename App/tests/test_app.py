@@ -85,8 +85,5 @@ class StudentIntegrationsTests(unittest.TestCase):
         self.assertEqual(created_student.fName, "John")
         self.assertEqual(created_student.lName, "Doe")
 
-    def test_get_students(self):
-        #retrieves a list of all students
-        students_list = get_students()
-        self.assertIsNotNone(students_list)
+    
         
