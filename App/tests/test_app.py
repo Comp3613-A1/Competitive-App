@@ -79,7 +79,7 @@ class UsersIntegrationTests(unittest.TestCase):
         assert user.username == "ronnie"
 
 class StudentIntegrationsTests(unittest.TestCase):
-     def test_create_student(self):
+    def test_create_student(self):
         created_student = create_student("John", "Doe", "johndoe@example.com", "johndoe", "password123")
         self.assertIsNotNone(created_student)
         self.assertEqual(created_student.fName, "John")
