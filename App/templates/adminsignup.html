@@ -14,18 +14,18 @@
 
 {% block content %}
 <main class="container" style="margin-top: 40px; ;justify-content: center ;align-items: center;display: flex">
-  <form class = "card col 12" id = "adminsignupForm" method = "get" action = "/admindashboard" style = "padding:1em; width: 700px">
+  <form class = "card col 12" id = "adminsignupForm" method = "POST" action = "/adminsignup" style = "padding:1em; width: 700px">
 
     <div class = "row">
       <div class = "input-field col s12">
-        <input placeholder = "First Name" name = "fname" type = "text" class = "validate">
+        <input placeholder = "First Name" name = "fName" type = "text" class = "validate">
         <label for = "first_name">First Name</label>
       </div>
     </div>
 
     <div class = "row">
       <div class = "input-field col s12">
-        <input placeholder = "Last Name" name = "lname" type = "text" class = "validate">
+        <input placeholder = "Last Name" name = "lName" type = "text" class = "validate">
         <label for = "last_name">Last Name</label>
       </div>
     </div>
@@ -39,7 +39,7 @@
 
     <div class = "row">
       <div class = "input-field col s12">
-        <input placeholder = "Username" name = "user_name" type = "text" class = "validate">
+        <input placeholder = "Username" name = "username" type = "text" class = "validate">
         <label for = "user_name">User Name</label>
       </div>
     </div>
