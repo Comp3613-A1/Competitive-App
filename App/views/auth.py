@@ -63,7 +63,7 @@ def signup_action():
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
 
     if existing_user:
-        return 'Username or email already taken', 409
+        return jsonify({"error":"Username or email already taken"}), 409
 
     # Create a new user
     new_user = create_student(fName=fName, lName=lName, email=email,username=username, password=password)
@@ -73,8 +73,7 @@ def signup_action():
     db.session.commit()
 
     # Redirect to a success page or return a JSON response
-    return redirect('/studentdashboard')
-    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
+    return redirect('/studentdashboard'), jsonify(message=f'Student created with id {new_user.id}!'), 201
 
 @auth_views.route('/signup', methods=['POST'])
 def student_signup_action():
