@@ -78,7 +78,7 @@ def signup_action():
 
 @auth_views.route('/signup', methods=['POST'])
 def student_signup_action():
-    data = request.form  # Assuming you are sending form data
+    data = request.form  
     fName = data['fName']
     lName = data['lName']
     username = data['username']
@@ -89,7 +89,7 @@ def student_signup_action():
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
 
     if existing_user:
-        return 'Username or email already taken', 409
+        return jsonify({"error":"Username or email already taken"}), 409
 
     # Create a new user
     new_student = create_student(fName=fName, lName=lName, email=email,username=username, password=password)
