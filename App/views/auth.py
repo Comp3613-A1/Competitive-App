@@ -74,7 +74,7 @@ def signup_action():
 
     # Redirect to a success page or return a JSON response
     # redirect('/studentdashboard')
-    return jsonify(message=f'Student created with id {new_user.id}!'), 201
+    return jsonify({"message": f"Student created with id {new_user.id}!"}), 201
 
 @auth_views.route('/signup', methods=['POST'])
 def student_signup_action():
