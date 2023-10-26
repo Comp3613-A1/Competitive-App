@@ -24,7 +24,7 @@ def admin_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if not current_user.is_authenticated or not isinstance(current_user, Admin):
-            return "Unauthorized", 401
+            return jsonify({"error":"Unauthorized."}), 401
         return func(*args, **kwargs)
     return wrapper
 

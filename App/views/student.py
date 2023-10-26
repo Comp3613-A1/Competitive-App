@@ -15,7 +15,7 @@ def view_student_profile():
         profile_data = student.view_profile()
         return render_template('viewprofile.html', profile_data=profile_data)
     else:
-        return "Student not found", 404
+        return jsonify({"error":"Student not found."}), 404
 
 @student_views.route('/student/profile', methods=['GET'])
 def view_student_competitions(competition_identifier):
@@ -24,7 +24,7 @@ def view_student_competitions(competition_identifier):
         competitions = student.student_competitions()
         return render_template('viewprofile.html', competitions=competitions)
     else:
-        return "Student not found", 404
+        return jsonify({"error":"Student not found."}), 404
 
 @student_views.route('/competitiondetails', methods=['GET'])
 def view_competition_details(competition_identifier):
@@ -36,4 +36,4 @@ def view_competition_details(competition_identifier):
         else:
             return "Competition not found", 404
     else:
-        return "Student not found", 404
+        return jsonify({"error":"Student not found."}), 404
