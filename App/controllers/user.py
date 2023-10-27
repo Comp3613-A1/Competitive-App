@@ -46,7 +46,7 @@ def update_user(id, username):
     return None
 
 def view_ranking():
-    # Query all students and order them by score (in descending order) to create the leaderboard
+    # Query all students and order them by score (in descending order) to create leaderboard
     leaderboard = (
         db.session.query(cls, func.row_number().over(order_by=desc(cls.score)).label("position"))
         .order_by(desc(cls.score))
