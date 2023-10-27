@@ -158,7 +158,7 @@ def get_results_json_action():
 def get_results_endpoint():
     data = request.json
     add_result(data['competitionID'],data['studentID'], data['position'],data['score'])
-    return jsonify({'message': f"new competition with id of {data['competitionID']} created"}), 201
+    return jsonify({'message': f"new competition with id of {data['competitionID']} created"}), 200
 
 @admin_views.route('/addcompetition', methods=['POST'])
 def get_competition_action():
