@@ -168,6 +168,18 @@ def get_competition_action():
     
     return get_all_comp_json()
 
+@admin_views.route('/test_add_results', methods=['POST'])
+def test_add_results():
+    data = {
+        'competitionID': 1,
+        'studentID': 2,
+        'position': 1,
+        'score': 95
+    }
+    with admin_views.test_client() as client:
+        response = client.post('/addresults', data=data)
+    return response.get_data()
+
 @admin_views.route('/api/results', methods=['GET'])
 def get_results_json_action():
     results = get_all_results_json()
