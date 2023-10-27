@@ -131,19 +131,18 @@ def add_result(competitionID, studentID, position, score):
 
 @admin_views.route('/addresults', methods=['POST'])
 def get_results_action():
-
 try:
-    data = request.form 
-    competitionID = data['competitionID']
-    studentID = data['studentID']
-    position = data['position']
-    score = data['score']
-    new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
-    db.session.add(new_results)
-    db.session.commit()
-except Exception as e:
+        data = request.form 
+        competitionID = data['competitionID']
+        studentID = data['studentID']
+        position = data['position']
+        score = data['score']
+        new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
+        db.session.add(new_results)
+        db.session.commit()
+    except Exception as e:
         return jsonify({'error': str(e)}), 200
-return redirect('/ranking')
+    return redirect('/ranking')
     #return get_all_results_json()
     #return jsonify(message=f'{new_results.competitionID}')
     # Redirect to a success page or return a JSON response
