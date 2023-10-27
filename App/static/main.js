@@ -19,4 +19,26 @@ async function main(){
     loadTable(users);
 }
 
+async function getResultData(){
+    const response = await fetch('/api/results');
+    return response.json();
+}
+function loadResults(results){
+    const table = document.querySelector('#addResultsForm');
+    for(let result of results){
+        table.innerHTML += `<tr>
+            <td>${results.competitionID}</td>
+            <td>${results.studentID}</td>
+            <td>${results.position}</td>
+            <td>${results.rank}</td>
+        </tr>`;
+    }
+}
+
+async function main1(){
+    const results = await getResultData();
+    loadResults(results);
+}
+
 main();
+main1();
