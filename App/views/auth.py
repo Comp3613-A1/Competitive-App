@@ -10,6 +10,7 @@ from App.controllers import (
     jwt_authenticate,
     get_all_users_json,
     login,
+    get_all_log_json,
     create_student,
     create_admin
 )
@@ -141,6 +142,11 @@ def create_user_endpoint():
     data = request.json
     create_user(data['username'], data['password'])
     return jsonify({'message': f"user {data['username']} created"})
+
+@auth_views.route('/api/login', methods=['GET'])
+def get_log_action():
+    users = get_all_log_json()
+    return jsonify(users)
 
 @auth_views.route('/api/login', methods=['POST'])
 def user_login_api():
