@@ -39,6 +39,7 @@ def login_action():
     existing_user = User.query.filter((User.username == data['username']) & (User.password == data['password'] )).first()
 
     if existing_user:
+        jsonify ({'message': f"Login authenticated!"})
         return redirect('/studentdashboard')
     #if user:
         #login_user(user)// this prevents get userid error
