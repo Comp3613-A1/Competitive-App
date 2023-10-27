@@ -45,7 +45,7 @@ def login_user_endpoint():
 def create_user_action():
     data = request.form
     flash(f"User {data['username']} created!")
-    create_user(data['fName'],data['lName'], data['email'],data['username'], data['password']) # add , data['email'] ??
+    create_user(data['fName'],data['lName'], data['email'],data['username'], data['password']) 
     return redirect(url_for('user_views.get_user_page'))
 
 @user_views.route('/static/users', methods=['GET'])
