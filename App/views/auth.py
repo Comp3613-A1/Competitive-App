@@ -38,12 +38,8 @@ def login_action():
     data = request.form
     user = login(data['username'], data['password'])
     existing_user = User.query.filter((User.username == data['username']) & (User.password == data['password'] )).first()
-
     if existing_user:
         return redirect('/studentdashboard')
-    #if user:
-        #login_user(user)// this prevents get userid error
-        #return redirect('/studentdashboard')
     return 'bad username or password given', 401
 
 @auth_views.route('/logout', methods=['GET'])
@@ -54,27 +50,21 @@ def logout_action():
 
 @auth_views.route('/studentsignup', methods=['POST'])
 def signup_action():
-    data = request.form  # Assuming you are sending form data
+    data = request.form
     fName = data['fName']
     lName = data['lName']
     username = data['username']
     email = data['email']
     password = data['password']
-
-    # Check if the username or email is already taken
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
 
     if existing_user:
         return jsonify({"error":"Username or email already taken"}), 409
 
-    # Create a new user
     new_user = create_student(fName=fName, lName=lName, email=email,username=username, password=password)
 
-    # Add the user to the database
     db.session.add(new_user)
     db.session.commit()
-    # Redirect to a success page or return a JSON response
-    # jsonify({"message": f"Student created with id {new_user.id}!"}), 201 
     return redirect('/studentdashboard')
 
 @auth_views.route('/signup', methods=['POST'])
@@ -105,29 +95,25 @@ def student_signup_action():
 
 @auth_views.route('/adminsignup', methods=['POST'])
 def admin_signup_action():
-    data = request.form  # Assuming you are sending form data
+    data = request.form  
     fName = data['fName']
     lName = data['lName']
     username = data['username']
     email = data['email']
     password = data['password']
 
-    # Check if the username or email is already taken
     existing_user = User.query.filter((User.username == username) | (User.email == email)).first()
 
     if existing_user:
         return jsonify({"error":"Username or email already taken"}), 409
 
-    # Create a new user
+
     new_admin = create_admin(fName=fName, lName=lName, email=email,username=username, password=password)
 
-    # Add the user to the database
     db.session.add(new_admin)
     db.session.commit()
 
-    # Redirect to a success page or return a JSON response
     return redirect('/admindashboard')
-    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
 '''
 API Routes
 '''
