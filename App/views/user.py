@@ -38,10 +38,8 @@ def create_user_endpoint():
 @user_views.route('/api/login', methods=['POST'])
 def login_user_endpoint():
     data = request.json
-    token = jwt_authenticate(data['username'], data['password'])
-    if not token:
-        return jsonify({'error': 'wrong username or password given'}), 401
-    return jsonify({'access_token': token})
+    login(data['username'], data['password'])
+    return jsonify({'message': f"user: {data['username']} is a valid user and has logged in successfully!"})
 
 @user_views.route('/users', methods=['POST'])
 def create_user_action():
