@@ -3,7 +3,6 @@ from App.models import *
 class Competition(db.Model):
     __tablename__ = 'Competition'
     competitionID = db.Column(db.Integer, primary_key=True)
-    #staffID = db.Column(db.Integer, db.ForeignKey('Admin.staffID'), nullable=False, unique=False)
     name = db.Column(db.String(120), nullable=False)
     startDate = db.Column(db.String, unique=False, nullable=False)
     endDate = db.Column(db.String, unique=False, nullable=False)
@@ -11,7 +10,6 @@ class Competition(db.Model):
     description = db.Column(db.String(255))  # Add a description field
 
     def __init__(self, name, startDate, endDate, division, description):
-        #self.staffID = staffID
         self.name = name
         self.startDate = startDate
         self.endDate = endDate
