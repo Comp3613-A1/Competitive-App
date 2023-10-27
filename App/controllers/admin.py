@@ -13,12 +13,12 @@ def create_admin(fName, lName, email, username, password):
 def get_all_comp():
     return Competition.query.all()
 
-def create_competition( name, startDate, endDate, division, description):
+def create_competition(name, startDate, endDate, division, description):
     competition = Competition(
         name=name,
         startDate=startDate,
         endDate=endDate,
-        division=division, #Add division category the competition allows
+        division=division,
         description=description,  
     )
     db.session.add(competition)
