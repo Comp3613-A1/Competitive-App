@@ -24,6 +24,19 @@ def get_all_users_json():
     users = [user.get_json() for user in users]
     return users
 
+def get_all_log_json():
+    users = User.query.all()
+    if not users:
+        return []
+    user_list = []
+    for user in users:
+        user_data = {
+            'username': user.username,
+            'password': user.password,
+        }
+        user_list.append(user_data)
+    return user_list
+
 def update_user(id, username):
     user = get_user(id)
     if user:
