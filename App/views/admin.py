@@ -95,7 +95,7 @@ def get_results_action():
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201'''
 
 
-def add_result(competitionID, studentID, position, score):
+'''def add_result(competitionID, studentID, position, score):
         
         # Store rankings before new results are added
         #prev_ranks = view_rankings()
@@ -116,7 +116,7 @@ def add_result(competitionID, studentID, position, score):
         #current_ranks = view_rankings()
 
         # Find users who were in the top 20 in the previous rankings
-        """top_20_previous = [user for user, position in prev_ranks[:20]]
+    top_20_previous = [user for user, position in prev_ranks[:20]]
 
         # Find users who are in the top 20 in the current leaderboard
         top_20_current = [user for user, position in current_ranks[:20]]
@@ -126,30 +126,31 @@ def add_result(competitionID, studentID, position, score):
             if user not in top_20_current:
                 # User was in the top 20 previously but not anymore, send a notification
                 send_notification(user, "Your ranking has dropped out of the top 20.")
-"""
+'''
         #return result
 
 @admin_views.route('/addresults', methods=['POST'])
 def get_results_action():
-    try:
-        data = request.form 
-        competitionID = data['competitionID']
-        studentID = data['studentID']
-        position = data['position']
-        score = data['score']
-        new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
-        db.session.add(new_results)
-        db.session.commit()
-    except Exception as e:
-        return jsonify({'error': str(e)}), 200
-    return redirect('/ranking')
+    #try:
+    data = request.form 
+    competitionID = data['competitionID']
+    studentID = data['studentID']
+    position = data['position']
+    score = data['score']
+    new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
+    db.session.add(new_results)
+    db.session.commit()
+    #except Exception as e:
+        #return jsonify({'error': str(e)}), 200
+    return get_all_results_json()
+#redirect('/ranking')
     #return get_all_results_json()
     #return jsonify(message=f'{new_results.competitionID}')
     # Redirect to a success page or return a JSON response
    # return redirect('/studentdashboard') get_result_json
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
 
-@admin_views.route('/api/results', methods=['GET'])
+'''@admin_views.route('/api/results', methods=['GET'])
 def get_results_json_action():
     results = get_all_results_json()
     return jsonify(results)
@@ -158,7 +159,7 @@ def get_results_json_action():
 def get_results_endpoint():
     data = request.json
     add_result(data['competitionID'],data['studentID'], data['position'],data['score'])
-    return jsonify({'message': f"new competition with id of {data['competitionID']} created"}), 200
+    return jsonify({'message': f"new competition with id of {data['competitionID']} created"}), 200'''
 
 @admin_views.route('/addcompetition', methods=['POST'])
 def get_competition_action():
@@ -174,7 +175,7 @@ def get_competition_action():
     
     return get_all_comp_json()
 
-
+'''
 @admin_views.route('/test_add_results', methods=['POST'])
 def test_add_results():
     data = {
@@ -198,4 +199,4 @@ def test_add_competition():
     }
     with admin_views.test_client() as client:
         response = client.post('/addcompetition', data=data)
-    return response.get_data()
+    return response.get_data()'''
