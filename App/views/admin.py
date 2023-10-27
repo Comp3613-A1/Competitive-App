@@ -172,8 +172,11 @@ def get_competition_action():
     new_competition = create_competition(name=name, startDate=startDate,endDate=endDate, division=division, description=description)
     db.session.add(new_competition)
     db.session.commit()
-    
-    return get_all_comp_json()
+    competitions = get_all_comp_json() 
+    return jsonify({
+        'message': 'Competition created successfully',
+        'competitions': competitions 
+    })  
 
 '''
 @admin_views.route('/test_add_results', methods=['POST'])
