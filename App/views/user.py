@@ -51,7 +51,7 @@ def view_leaderboard():
     try:
         leaderboard=get_all_results()
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return jsonify({'error': str(e)}), 200
     return render_template('ranking.html', leaderboard=leaderboard)
 
 @user_views.route('/competitiondetails', methods=['GET'])
