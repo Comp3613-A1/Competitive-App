@@ -2,7 +2,7 @@
 
 {% block title %}Rank My Coding{% endblock %}
 
-{% block page %}Profile & Competition{% endblock %}
+{% block page %}Profile & Competition Details{% endblock %}
 
 {{ super() }}
 
@@ -19,53 +19,77 @@
 
 {% block content %}
 
-<body>
-  <header class = "container" style = "text-align:left;margin-top:40px">
-    <h1>User Profile </h1>
-  </header>
+<div style="display:flex; padding: 5em">
 
-</body>
-
-<div class="row">
+   <section>
+    <h1>Profile</h1>
     <table>
       <thead>
         <tr>
-          <th>First name</th><th>Last name</th><th>Email</th><th>Username</th>
+          <th>Username</th>
         </tr>
       </thead>
       <tbody>
         {% for user in users %}
           <tr>
-              <td>{{user.fName}}</td>
-              <td>{{user.lName}}</td>
-              <td>{{user.email}}</td>
-              <td>{{user.username}}</td>
+            <td>{{ user.username }}</td>
           </tr>
         {% endfor %}
-      <tbody>
+      </tbody>
     </table>
-  </div>
-  
-<header class= "container" style = "text-align:left;margin-top:40px">
-    <h3>User Competitions</h3>
-   </header> 
-<main class="container" style="margin-top:40px;justify-content: center;align-items: center;display: flex" >
-   
-  <table>
-    <thead>
-      <th>Competition ID</th><th>Competition Name</th><th>Start Time</th><th>End Time</th><th>Details</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>COMPETITIONID01</td><td>Competition Name</td><td>Start</td><td>End</td><td>Details about competition.</td>
-      <tr>
-        <td>COMPETITIONID02</td><td>Competition Name</td><td>Start</td><td>End</td><td>Details about competition.</td>
-      </tr>
-    </tbody>
-  </table>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>First name</th> <th>Last Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ user.fName }}</td><td>{{ user.lName }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+          <tr>
+            <td>{{ user.email }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    
+  </section>
+  <aside class="row"  style = "text-align:center;margin-top:20px">
+    <section>
+      <h2>User Competitions</h2>
+      <table>
+        <thead>
+          <th>Competition ID</th><th>Competition Name</th><th>Start Time</th><th>End Time</th><th>Division</th><th>Details</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>COMPETITIONID01</td><td>Competition Name</td><td>Start</td><td>End</td><th>Division</th><td>Details about competition.</td>
+          <tr>
+            <td>COMPETITIONID02</td><td>Competition Name</td><td>Start</td><td>End</td><th>Division</th><td>Details about competition.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </aside>
+
+</div>
 
 
-</main>
 
-
-{% endblock %} 
+{% endblock %}
