@@ -36,6 +36,7 @@ def create_user_endpoint():
     return jsonify({'message': f"user {data['username']} created"})
 
 @user_views.route('/api/login', methods=['POST'])
+@jwt_required
 def login_user_endpoint():
     data = request.json
     token = jwt_authenticate(data['username'], data['password'])
