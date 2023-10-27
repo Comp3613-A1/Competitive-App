@@ -39,7 +39,6 @@ def login_action():
     existing_user = User.query.filter((User.username == data['username']) & (User.password == data['password'] )).first()
 
     if existing_user:
-        jsonify ({'message': f"Login authenticated!"})
         return redirect('/studentdashboard')
     #if user:
         #login_user(user)// this prevents get userid error
@@ -73,7 +72,6 @@ def signup_action():
     # Add the user to the database
     db.session.add(new_user)
     db.session.commit()
-    jsonify ({'message': f"Student signup was successful!"})
     # Redirect to a success page or return a JSON response
     # jsonify({"message": f"Student created with id {new_user.id}!"}), 201 
     return redirect('/studentdashboard')
