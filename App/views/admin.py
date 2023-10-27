@@ -167,3 +167,29 @@ def get_competition_action():
     db.session.commit()
     
     return get_all_comp_json()
+
+@admin_views.route('/test_add_results', methods=['POST'])
+def test_add_results():
+    data = {
+        'competitionID': 1,
+        'studentID': 2,
+        'position': 1,
+        'score': 95
+    }
+    with admin_views.test_client() as client:
+        response = client.post('/addresults', data=data)
+    return response.get_data()
+    
+@admin_views.route('/test_add_competition', methods=['POST'])
+def test_add_competition():
+    data = {
+        'name': 'Test Competition',
+        'startDate': '2023-10-26',
+        'endDate': '2023-11-01',
+        'division': 'Test Division',
+        'description': 'A test competition'
+    }
+    with admin_views.test_client() as client:
+        response = client.post('/addcompetition', data=data)
+    return response.get_data()
+
