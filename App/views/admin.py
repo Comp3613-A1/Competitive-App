@@ -177,5 +177,4 @@ def get_results_json_action():
 def get_results_endpoint():
     data = request.json
     new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
-    jsonify({'message': f"new competition with id of {data['competitionID']} created"})
-    return get_all_results_json()
+    return jsonify({'message': f"new competition with id of {data['competitionID']} created"}),201
