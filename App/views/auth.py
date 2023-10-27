@@ -73,7 +73,7 @@ def signup_action():
     # Add the user to the database
     db.session.add(new_user)
     db.session.commit()
-    jsonify ({'message': f"Student {data['username']} signup was successful!"})
+    jsonify ({'message': f"Student signup was successful!"})
     # Redirect to a success page or return a JSON response
     # jsonify({"message": f"Student created with id {new_user.id}!"}), 201 
     return redirect('/studentdashboard')
