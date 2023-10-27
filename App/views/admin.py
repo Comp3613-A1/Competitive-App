@@ -140,9 +140,14 @@ def get_results_action():
     new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
     db.session.add(new_results)
     db.session.commit()
+    results = get_all_results_json() 
+    return jsonify({
+        'message': 'Results successfully created!',
+        'results': results 
+    })  
     #except Exception as e:
         #return jsonify({'error': str(e)}), 200
-    return get_all_results_json()
+    #return get_all_results_json()
 #redirect('/ranking')
     #return get_all_results_json()
     #return jsonify(message=f'{new_results.competitionID}')
@@ -174,7 +179,7 @@ def get_competition_action():
     db.session.commit()
     competitions = get_all_comp_json() 
     return jsonify({
-        'message': 'Competition created successfully',
+        'message': 'Competition successfully created!',
         'competitions': competitions 
     })  
 
