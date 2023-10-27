@@ -94,6 +94,7 @@ def get_results_action():
    # return redirect('/studentdashboard') get_result_json
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201'''
 
+
 def add_result(competitionID, studentID, position, score):
         
         # Store rankings before new results are added
@@ -130,43 +131,50 @@ def add_result(competitionID, studentID, position, score):
 
 @admin_views.route('/addresults', methods=['POST'])
 def get_results_action():
-    data = request.form  # Assuming you are sending form data
+
+try:
+    data = request.form 
     competitionID = data['competitionID']
     studentID = data['studentID']
     position = data['position']
     score = data['score']
-
-    # Add result details
     new_results = add_result(competitionID=competitionID, studentID=studentID, position=position, score=score)
-
-    # Add the results to the database
     db.session.add(new_results)
     db.session.commit()
-
-    return redirect('/ranking')
+except Exception as e:
+        return jsonify({'error': str(e)}), 200
+return redirect('/ranking')
     #return get_all_results_json()
     #return jsonify(message=f'{new_results.competitionID}')
     # Redirect to a success page or return a JSON response
    # return redirect('/studentdashboard') get_result_json
     #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
 
+@admin_views.route('/api/results', methods=['GET'])
+def get_results_json_action():
+    results = get_all_results_json()
+    return jsonify(results)
+
+@admin_views.route('/api/results', methods=['POST'])
+def get_results_endpoint():
+    data = request.json
+    add_result(data['competitionID'],data['studentID'], data['position'],data['score'])
+    return jsonify({'message': f"new competition with id of {data['competitionID']} created"}), 201
+
 @admin_views.route('/addcompetition', methods=['POST'])
 def get_competition_action():
-    data = request.form  # Assuming you are sending form data
+    data = request.form  
     name = data['name']
     startDate= data['startDate']
     endDate= data['endDate']
     division = data['division']
     description = data['description']
-
-    # Add result details
     new_competition = create_competition(name=name, startDate=startDate,endDate=endDate, division=division, description=description)
-
-    # Add the results to the database
     db.session.add(new_competition)
     db.session.commit()
     
     return get_all_comp_json()
+
 
 @admin_views.route('/test_add_results', methods=['POST'])
 def test_add_results():
@@ -179,14 +187,16 @@ def test_add_results():
     with admin_views.test_client() as client:
         response = client.post('/addresults', data=data)
     return response.get_data()
-
-@admin_views.route('/api/results', methods=['GET'])
-def get_results_json_action():
-    results = get_all_results_json()
-    return jsonify(results)
-
-@admin_views.route('/api/results', methods=['POST'])
-def get_results_endpoint():
-    data = request.json
-    add_result(data['competitionID'],data['studentID'], data['position'],data['score'])
-    return jsonify({'message': f"new competition with id of {data['competitionID']} created"}),201
+    
+@admin_views.route('/test_add_competition', methods=['POST'])
+def test_add_competition():
+    data = {
+        'name': 'Test Competition',
+        'startDate': '2023-10-26',
+        'endDate': '2023-11-01',
+        'division': 'Test Division',
+        'description': 'A test competition'
+    }
+    with admin_views.test_client() as client:
+        response = client.post('/addcompetition', data=data)
+    return response.get_data()
