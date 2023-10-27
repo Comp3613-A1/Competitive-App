@@ -82,16 +82,12 @@ def student_signup_action():
     if existing_user:
         return jsonify({"error":"Username or email already taken"}), 409
 
-    # Create a new user
     new_student = create_student(fName=fName, lName=lName, email=email,username=username, password=password)
 
-    # Add the user to the database
     db.session.add(new_student)
     db.session.commit()
 
-    # Redirect to a success page or return a JSON response
     return redirect('/studentdashboard')
-    #jsonify(message=f'User {new_user.id} - {new_user.username} created!'), 201
 
 @auth_views.route('/adminsignup', methods=['POST'])
 def admin_signup_action():
