@@ -131,7 +131,7 @@ def add_result(competitionID, studentID, position, score):
 
 @admin_views.route('/addresults', methods=['POST'])
 def get_results_action():
-try:
+    try:
         data = request.form 
         competitionID = data['competitionID']
         studentID = data['studentID']
