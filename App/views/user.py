@@ -48,7 +48,10 @@ def static_user_page():
 
 @user_views.route('/ranking', methods=['GET'])
 def view_leaderboard():
-    leaderboard=get_all_results()
+    try:
+        leaderboard=get_all_results()
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
     return render_template('ranking.html', leaderboard=leaderboard)
 
 @user_views.route('/competitiondetails', methods=['GET'])
