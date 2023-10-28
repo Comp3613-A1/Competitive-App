@@ -1,5 +1,5 @@
 from sqlalchemy import func, desc
-from App.models import User, Student
+from App.models import User, Student, Competition, Results
 from App.database import db
 
 def create_student(fName, lName, email, username, password):
@@ -12,12 +12,10 @@ def view_competition_details(self, competition_identifier):
     if isinstance(competition_identifier, int):
         competition = Competition.query.filter_by(id=competition_identifier, student_id=self.studentID).first()
     else:
-        #Query by competition name 
         competition = Competition.query.filter_by(name=competition_identifier, student_id=self.studentID).first()
 
     return competition
 
-#Get a list of competitions that the specific Student participated in
 def student_competitions(self):
     competitions = Competition.query.join(Results).filter(Results.student_id == self.studentID).all()
     
