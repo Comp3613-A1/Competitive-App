@@ -124,6 +124,17 @@ def create_user_endpoint():
     data = request.json
     create_user(data['username'], data['password'])
     return jsonify({'message': f"user {data['username']} created"})
+    
+@auth_views.route('/api/ranking', methods=['GET'])
+def get_leaderboard_action():
+    results = get_all_results_json()
+    return jsonify(results)
+
+@auth_views.route('/api/ranking', methods=['POST'])
+def get_result_endpoint():
+    data = request.json
+    add_result(data['competitionID'], data['studentID'], data['position'], data['score'])
+    return jsonify({'message': f"Competition {data['competitionID']} created!"})
 
 @auth_views.route('/api/login', methods=['GET'])
 def get_log_action():
