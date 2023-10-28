@@ -11,15 +11,11 @@ student_views = Blueprint('student_views', __name__, template_folder='../templat
 @student_views.route('/viewprofile', methods=['GET'])
 def view_student_profile():
 
-    # if you want to hard code to test a certain user ID just change "current_user.userID" 
-    # change it to the id of the student u want to see the profile of, change it lower down too 
-    # around line 21
-    student = Student.query.filter_by(userID=current_user.userID).first()
-    print(f'current_user: {current_user}')
+    student = Student.query.filter_by(userID=2).first()
     if student:
-        # Fetch the user object associated with the student
-        user = User.query.get(current_user.userID)
-        print(f'user: {user}')
+
+        user = User.query.get(2)
+
         if user:
             return render_template('viewprofile.html', user=user)
         else:
