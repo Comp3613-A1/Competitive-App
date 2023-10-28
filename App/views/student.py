@@ -17,6 +17,7 @@ def view_student_profile():
         user = User.query.get(2)
 
         if user:
+            flash(f"Notification that you are in top 20!")
             return render_template('viewprofile.html', user=user)
         else:
             return jsonify({"error": "User not found."}), 404
