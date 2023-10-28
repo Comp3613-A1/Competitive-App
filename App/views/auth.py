@@ -145,7 +145,7 @@ def get_result_endpoint():
         "position": data['position'],
         "score": data['score']
     }]
-    return jsonify(response_data)
+    return jsonify([response_data])
 
 
 @auth_views.route('/api/competitiondetails', methods=['GET'])
