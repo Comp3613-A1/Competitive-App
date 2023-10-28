@@ -14,7 +14,9 @@ from App.controllers import (
     get_all_results_json,
     get_all_log_json,
     create_student,
-    create_admin
+    create_admin,
+    create_competition,
+    get_all_comp_json
 )
 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates')
@@ -136,6 +138,17 @@ def get_leaderboard_action():
 def get_result_endpoint():
     data = request.json
     add_result(data['competitionID'], data['studentID'], data['position'], data['score'])
+    return jsonify({'message': f"Competition {data['competitionID']} created!"})
+
+@auth_views.route('/api/competitiondetails', methods=['GET'])
+def get_competition_action():
+    competitions = get_all_comp_json()
+    return jsonify(competitions)
+
+@auth_views.route('/api/competitiondetails', methods=['POST'])
+def get_competition_endpoint():
+    data = request.json
+    create_competition(data['name'], data['startDate'], data['endDate'], data['division'], data['description'])
     return jsonify({'message': f"Competition {data['competitionID']} created!"})
 
 @auth_views.route('/api/login', methods=['GET'])
