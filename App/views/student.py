@@ -8,23 +8,24 @@ from App.controllers import *
 
 student_views = Blueprint('student_views', __name__, template_folder='../templates')
 
-@student_views.route('/student/profile', methods=['GET'])
+@student_views.route('/viewprofile', methods=['GET'])
 def view_student_profile():
-    student = Student.query.filter_by(user_id=current_user.userID).first()
-    if student:
-        profile_data = student.view_profile()
-        return render_template('viewprofile.html', profile_data=profile_data)
-    else:
-        return jsonify({"error":"Student not found."}), 404
 
-@student_views.route('/student/profile', methods=['GET'])
-def view_student_competitions(competition_identifier):
-    student = Student.query.filter_by(user_id=current_user.userID).first()
+    # if you want to hard code to test a certain user ID just change "current_user.userID" 
+    # change it to the id of the student u want to see the profile of, change it lower down too 
+    # around line 21
+    student = Student.query.filter_by(userID=current_user.userID).first()
+    print(f'current_user: {current_user}')
     if student:
-        competitions = student.student_competitions()
-        return render_template('viewprofile.html', competitions=competitions)
+        # Fetch the user object associated with the student
+        user = User.query.get(current_user.userID)
+        print(f'user: {user}')
+        if user:
+            return render_template('viewprofile.html', user=user)
+        else:
+            return jsonify({"error": "User not found."}), 404
     else:
-        return jsonify({"error":"Student not found."}), 404
+        return jsonify({"error": "Student not found."}), 404
 
 @student_views.route('/competitiondetails', methods=['GET'])
 def view_competition_details(competition_identifier):
