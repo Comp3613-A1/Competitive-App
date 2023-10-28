@@ -27,7 +27,6 @@ class UserUnitTests(unittest.TestCase):
         user = User("bob", "bobpass")
         assert user.username == "bob"
 
-    # pure function no side effects or integrations called
     def test_get_json(self):
         user = User("bob", "bobpass")
         user_json = user.get_json()
@@ -48,8 +47,6 @@ class UserUnitTests(unittest.TestCase):
     Integration Tests
 '''
 
-# This fixture creates an empty database for the test and deletes it after the test
-# scope="class" would execute the fixture once and resued for all methods in the class
 @pytest.fixture(autouse=True, scope="module")
 def empty_db():
     app = create_app({'TESTING': True, 'SQLALCHEMY_DATABASE_URI': 'sqlite:///test.db'})
@@ -72,7 +69,6 @@ class UsersIntegrationTests(unittest.TestCase):
         users_json = get_all_users_json()
         self.assertListEqual([{"id":1, "username":"bob"}, {"id":2, "username":"rick"}], users_json)
 
-    # Tests data changes in the database
     def test_update_user(self):
         update_user(1, "ronnie")
         user = get_user(1)
@@ -86,7 +82,6 @@ class StudentIntegrationsTests(unittest.TestCase):
         self.assertEqual(created_student.lName, "Doe")
 
     def test_get_students(self):
-        #retrieves a list of all students
         students_list = get_students()
         self.assertIsNotNone(students_list)
         
