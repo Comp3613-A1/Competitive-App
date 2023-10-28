@@ -3,11 +3,12 @@
 {% block page %}Leaderboard{% endblock %}
 
 {% block content %}
-   <div class="row">
-        <p>
-            This leaderboard is rendered on the server. Flask retrieves student data from the database and dynamically renders this page when a request is sent to <a href="/ranking">/ranking</a>.
-        </p>
-    </div>
+<body>
+  <header class = "container" style = "text-align:center;margin-top:40px">
+    Competitions that were previously added.
+  </header>
+</body>
+
 <form class="col s12" method="POST" action="/ranking">
     <div class="row">
         <table style="margin-left: 20px;">
