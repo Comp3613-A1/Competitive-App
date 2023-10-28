@@ -138,7 +138,15 @@ def get_leaderboard_action():
 def get_result_endpoint():
     data = request.json
     add_result(data['competitionID'], data['studentID'], data['position'], data['score'])
-    return jsonify({'message': f"Competition {data['competitionID']} created!"})
+    response_data =[
+    {
+        "competitionID": data['competitionID'],
+        "studentID": data['studentID'],
+        "position": data['position'],
+        "score": data['score']
+    }]
+    return jsonify(response_data)
+
 
 @auth_views.route('/api/competitiondetails', methods=['GET'])
 def get_competition_action():
