@@ -10,6 +10,8 @@ from App.controllers import (
     jwt_authenticate,
     get_all_users_json,
     login,
+    add_result,
+    get_all_results_json,
     get_all_log_json,
     create_student,
     create_admin
